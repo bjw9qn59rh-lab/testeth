@@ -14,7 +14,7 @@ workflows:
           flutter pub get
       - name: 📱 iOS Release Build
         script: |
-          flutter build ipa --release --no-tree-shake-icons
+          flutter build ipa --release --no-codesign
     artifacts:
       - build/ios/ipa/*.ipa
       - build/ios/archive/*.xcarchive
