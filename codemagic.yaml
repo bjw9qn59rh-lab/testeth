@@ -1,0 +1,24 @@
+workflows:
+  eth_ios_build:
+    name: ETH Zeiterfassung iOS Build
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      vars:
+        PACKAGE_NAME: "com.eth.zeiterfassung"
+    scripts:
+      - name: 🔧 Vorbereitung
+        script: |
+          flutter clean
+          flutter pub get
+      - name: 📱 iOS Release Build
+        script: |
+          flutter build ipa --release --no-tree-shake-icons
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - build/ios/archive/*.xcarchive
+    publishing:
+      email:
+        recipients:
+          - maik.frankenberger94@web.de   # <--- Hier deine E-Mail eintragen, um den Download-Link zu bekommen
