@@ -13,8 +13,11 @@ workflows:
       - name: 📱 iOS Unsigned Build
         script: |
           flutter build ipa --release --no-codesign
+          mkdir -p Payload
+          cp -r build/ios/iphoneos/Runner.app Payload/
+          zip -r Runner.ipa Payload
     artifacts:
-      - build/ios/ipa/*.ipa
+      - Runner.ipa
     publishing:
       email:
         recipients:
